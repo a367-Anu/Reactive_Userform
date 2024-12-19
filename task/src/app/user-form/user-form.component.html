@@ -1,0 +1,84 @@
+<!-- <form [formGroup]="profileForm">
+    <label for="first-name">First Name: </label>
+    <input id="first-name" type="text" formControlName="firstName">
+    <label for="last-name">Last Name: </label>
+    <input id="last-name" type="text" formControlName="lastName">
+    <p>Complete the form to enable button.</p>
+    <button (click)=" onSubmit()">Submit</button>
+  </form> -->
+
+  <div class="container">
+    <h2>Reactive Form Example</h2>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      
+      <div>
+        <label for="first-name">First Name:</label>
+        <input id="first-name" type="text" formControlName="firstName" />
+        <div class="danger" *ngIf="profileForm.controls['firstName'].invalid && (profileForm.controls['firstName'].touched || profileForm.controls['firstName'].dirty)">
+          <span *ngIf="profileForm.controls['firstName'].errors?.['required']">First Name is required</span>
+          <span *ngIf="profileForm.controls['firstName'].errors?.['minlength']">This must be at least 3 characters long</span>
+        </div>
+      </div>
+  
+      <div>
+        <label for="last-name">Last Name:</label>
+        <input id="last-name" type="text" formControlName="lastName" />
+        <div class="danger" *ngIf="profileForm.controls['lastName'].invalid && (profileForm.controls['lastName'].touched || profileForm.controls['lastName'].dirty)">
+          <span *ngIf="profileForm.controls['lastName'].errors?.['required']">Last Name is required</span>
+          <span *ngIf="profileForm.controls['lastName'].errors?.['minlength']">This must be at least 3 characters long</span>
+        </div>
+      </div>
+  
+      <div formGroupName="address">
+        <h3>Address</h3>
+        <div>
+          <label for="street">Street:</label>
+          <input id="street" type="text" formControlName="street" />
+          <div class="danger" *ngIf="address.controls['street'].invalid && (address.controls['street'].touched || address.controls['street'].dirty)">
+            <span *ngIf="address.controls['street'].errors?.['required']">Street is required</span>
+          </div>
+        </div>
+        <div>
+          <label for="city">City:</label>
+          <input id="city" type="text" formControlName="city" />
+          <div class="danger" *ngIf="address.controls['city'].invalid && (address.controls['city'].touched || address.controls['city'].dirty)">
+            <span *ngIf="address.controls['city'].errors?.['required']">City is required</span>
+          </div>
+        </div>
+        <div>
+          <label for="state">State:</label>
+          <input id="state" type="text" formControlName="state" />
+          <div class="danger" *ngIf="address.controls['state'].invalid && (address.controls['state'].touched || address.controls['state'].dirty)">
+            <span *ngIf="address.controls['state'].errors?.['required']">State is required</span>
+          </div>
+        </div>
+        <div>
+          <label for="zip">Zip Code:</label>
+          <input id="zip" type="text" formControlName="zip" />
+          <div class="danger" *ngIf="address.controls['zip'].invalid && (address.controls['zip'].touched || address.controls['zip'].dirty)">
+            <span *ngIf="address.controls['zip'].errors?.['required']">Zip Code is required</span>
+            <span *ngIf="address.controls['zip'].errors?.['pattern']">Must be a valid 5-digit number</span>
+          </div>
+        </div>
+      </div>
+  
+      <!----- FormArray for Skills-- -->
+      <div formArrayName="skills">
+        <h3>Add Skills</h3>
+        <div class="skills" *ngFor="let skill of skills.controls; let i = index" [formGroupName]="i">
+          <label for="skill-{{i}}">Skill {{i + 1}}:</label>
+
+            <input id="skill-{{i}}" style="width: 400px; margin-left: 10px;" type="text" placeholder="Add Skill..."      formControlName="skill" />
+             <div class="danger" *ngIf="skill?.get('skill')?.invalid && (skill?.get('skill')?.touched || skill?.get('skill')?.dirty)">
+              <span *ngIf="skill?.get('skill')?.errors?.['required']">Skill is required</span>
+            </div>
+            <button class="dltbtn" type="button" (click)="removeSkill(i)">Delete</button> 
+        </div>
+        <button class="addbtn" type="button" (click)="AddSkills()">Add Skill</button>
+      </div>
+  
+      <button type="submit" [disabled]="profileForm.invalid">Submit</button>
+    </form>
+  </div>
+  
+  

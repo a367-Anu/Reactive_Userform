@@ -1,0 +1,171 @@
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  h2,h3{
+    text-align: center;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  input,select {
+    font-size: 14px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+  }
+  
+  select[type="text"],input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+  }
+
+  /* -----SkKILL ---*/
+  .skills{
+    display: flex;
+    
+  
+  }
+  .addbtn
+  {
+    width:100px;
+    padding: 10px;
+    color: white;
+    margin-bottom: 10px;
+    background-color: hsl(120, 100%, 25%);
+    border-radius: 10px;
+    border: none;
+    
+  }
+  .addbtn:hover{
+    background-color: #218838;
+    cursor: pointer;
+  }
+  
+  .dltbtn
+  {
+    width:60px;
+    padding: 10px;
+    color: white;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    background-color: #e74c3c;
+    border-radius: 10px;
+    border: none;
+  }
+ 
+  .dltbtn:hover{
+    background-color: #c0392b;
+    cursor: pointer;
+  }
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Error--- */
+  span {
+    font-size: 12px;
+    color: #e74c3c;
+    margin-top: 5px;
+  }
+  
+  /*--- Address- ---*/
+  h3 {
+    font-size: 16px;
+    margin-top: 20px;
+    color: #333;
+  }
+  
+  .address-form {
+    background-color: #f0f0f0;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+ 
+  .remove-address-btn{
+    background-color: #e74c3c;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-top: 10px;
+    cursor: pointer;
+    
+    width: 30%;
+  }
+  
+  .remove-address-btn:hover {
+    background-color: #c0392b;
+  }
+  
+
+  .add-address-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 20px;
+    width: 30%;
+  }
+  
+  .add-address-btn:hover {
+    background-color: #218838;
+  }
+  
+ .btn{
+  display: flex;
+  margin: 0px 30px;
+ }
+ .sub-reset-btn {
+    margin: 0px 30px;
+    width: 50%;
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+ 
+  
+  /* Responsive ---------*/
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px;
+      width: 90%;
+    }
+  
+    .form-section {
+      flex-direction: column;
+    }
+  }
+  

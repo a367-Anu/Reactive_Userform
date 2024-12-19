@@ -1,0 +1,98 @@
+<div class="container">
+  <h2>Reactive Form Example</h2>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <!-- Name -->
+      <label for="name">Name:</label>
+      <input id="name" formControlName="name" type="text" />
+      <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched">
+        <span *ngIf="userForm.get('name')?.hasError('required')">Name is required.</span>
+        <span *ngIf="userForm.get('name')?.hasError('pattern')">Only alphabets are allowed.</span>
+      </div>
+  
+      <!-- Contact -->
+      <label for="contact">Contact:</label>
+      <input id="contact" formControlName="contact" type="text" />
+      <div *ngIf="userForm.get('contact')?.invalid && userForm.get('contact')?.touched">
+        <span *ngIf="userForm.get('contact')?.hasError('required')">Contact is required.</span>
+        <span *ngIf="userForm.get('contact')?.hasError('pattern')">Only 10 digit numbers are allowed.</span>
+      </div>
+  
+      <!-- Email -->
+      <label for="email">Email:</label>
+      <input id="email" formControlName="email" type="email" />
+      <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+        <span *ngIf="userForm.get('email')?.hasError('required')">Email is required.</span>
+        <span *ngIf="userForm.get('email')?.hasError('email')">Invalid email format.</span>
+      </div>
+  
+      <!-- Password -->
+      <label for="password">Password:</label>
+      <input id="password" formControlName="password" type="password" />
+      <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched">
+        <span *ngIf="userForm.get('password')?.hasError('required')">Password is required.</span>
+        <span *ngIf="userForm.get('password')?.hasError('minlength')">Password must be at least 12 characters.</span>
+        <span *ngIf="userForm.get('password')?.hasError('pattern')">Password must contain letters, numbers, and symbols.</span>
+      </div>
+  
+      <!-- Skills -->
+      
+      <div formArrayName="skills">
+        <h3>Add Skills</h3>
+        <div class="skills" *ngFor="let skill of skills.controls; let i = index" [formGroupName]="i">
+          <label for="skill-{{i}}">Skill {{i + 1}}:</label>
+            <div>
+
+              <input id="skill-{{i}}" style="width: 300px; margin-left: 10px;" type="text" placeholder="Add Skill..."      formControlName="skill" />
+              <div  *ngIf="skill?.get('skill')?.invalid && (skill?.get('skill')?.touched || skill?.get('skill')?.dirty)">
+                <span *ngIf="skill?.get('skill')?.hasError('required')">Skill is required</span>
+                <span *ngIf="skill?.get('skill')?.hasError('pattern')">Skills should only contain alphabets and commas.</span>
+              </div>
+            </div>
+            <button class="dltbtn" type="button" (click)="removeSkill(i)">Delete</button> 
+        </div>
+        <button class="addbtn" type="button" (click)="AddSkills()">Add Skill</button>
+      </div>
+      
+  
+      <!-- Address Section -->
+      <div formArrayName="addresses">
+        <div *ngFor="let address of addresses.controls; let i = index" [formGroupName]="i">
+          <h3>Address</h3>
+          <label for="type">Type:</label>
+          <!-- <input formControlName="type" type="text" /> -->
+          <select formControlName="type" type="text">
+            <option value="home">Home</option>
+            <option value="work">Work</option>
+          </select>
+
+          <label for="street">Street:</label>
+          <input formControlName="street" type="text" />
+          
+          <label for="city">City:</label>
+          <input formControlName="city" type="text" />
+          
+          <label for="state">State:</label>
+          <input formControlName="state" type="text" />
+          
+          <label for="country">Country:</label>
+          <input formControlName="country" type="text" />
+          
+          <label for="pinCode">Pin Code:</label>
+          <input formControlName="pinCode" type="text" />
+          <div *ngIf="address.get('pinCode')?.invalid && address.get('pinCode')?.touched">
+            <span *ngIf="address.get('pinCode')?.hasError('required')">Pin Code is required.</span>
+            <span *ngIf="address.get('pinCode')?.hasError('pattern')">Pin Code should be 6 digits.</span>
+          </div>
+          <button class="remove-address-btn" (click)="removeAddress(i)">Remove Address</button>
+        </div>
+      </div>
+      <button class="add-address-btn" (click)="addAddress() ">Add Address</button>
+
+      <div class="btn">
+        <button class="sub-reset-btn" type="submit"[disabled]="userForm.invalid" >Submit</button>
+        <button class="sub-reset-btn"  type="button"[disabled]="userForm.invalid" (click)="resetBuuton()">Reset</button>
+      </div>
+
+    </form>
+  </div>
+  
